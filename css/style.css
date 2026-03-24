@@ -128,3 +128,16 @@ header h1 {
     transform: translateY(-1px);
     transition: all 0.2s;
 }
+
+.alert-danger {
+    grid-column: 1 / -1;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #f87171;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
