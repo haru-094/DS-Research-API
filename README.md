@@ -1,7 +1,7 @@
 ## Data Science Research Hub
 
-🔴 Live Demo: http://13.222.225.87
-🎥 Video Demo: [Insert Link to Video Here]
+🔴 Live Demo: http://13.222.225.87<br>
+🎥 Video Demo: [https://www.loom.com/share/e11a39472a4f43dcbc12fe96c8a77790]
 
 A responsive, high-performance web application designed to query the OpenAlex API and retrieve highly relevant, open-access academic literature strictly focused on Data Science and Machine Learning. This project demonstrates modern frontend performance optimization and a high-availability deployment architecture using Nginx.
 
@@ -12,7 +12,7 @@ A responsive, high-performance web application designed to query the OpenAlex AP
 
 - Responsive UI: Fully optimized for all devices with asynchronous loading states and graceful error handling for network failures.
 
--High Availability Architecture: Deployed across two web servers behind an Nginx Load Balancer to ensure constant uptime and traffic distribution.
+- High Availability Architecture: Deployed across two web servers behind an Nginx Load Balancer to ensure constant uptime and traffic distribution.
 
 ## 💻 How to Run Locally (Localhost)
 Because this application utilizes the open-access OpenAlex API, no API keys or hidden .env files are required. To test the application on your own machine, follow these simple steps:
@@ -20,8 +20,10 @@ Because this application utilizes the open-access OpenAlex API, no API keys or h
 ### 1. Clone the Repository
 
 Bash
+```
 git clone https://github.com/haru-094/data-science-research-hub.git
 cd data-science-research-hub
+```
 
 ### 2. Launch the Application
 Since there is no backend server or API key configuration needed, you can simply double-click the index.html file to open it in your default web browser, or use a tool like VS Code Live Server for hot-reloading.
@@ -37,17 +39,23 @@ Steps Taken:
 Environment Setup: Installed Nginx web server.
 
 Bash
+```
 sudo apt update && sudo apt install nginx -y
+```
 Code Deployment: Cleared the default Nginx landing page and cloned the repository directly to the web root.
 
 Bash
+```
 sudo rm -rf /var/www/html/*
 sudo git clone https://github.com/haru-094/data-science-research-hub.git /var/www/html/
+```
 Permissions & Service Management: Granted Nginx ownership of the files and restarted the service.
 
 Bash
+```
 sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart nginx
+```
 
 ### 2. Load Balancer Configuration (Lb01)
 A third server (13.222.225.87) was configured as an Nginx Reverse Proxy to distribute incoming traffic.
@@ -57,7 +65,7 @@ Configuration Steps:
 Installed Nginx and modified the default configuration file (/etc/nginx/sites-available/default) to define an upstream pool and proxy routing.
 
 The Configuration Block:
-
+```
 Nginx
 upstream backend_servers {
     server 34.205.72.228;
@@ -76,6 +84,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
+```
 Key Configurations Explained:
 
 upstream backend_servers: Defines the pool of available web servers. By default, Nginx uses a Round Robin algorithm to cycle requests sequentially (Web01 → Web02 → Web01), preventing server overload.
@@ -103,11 +112,13 @@ Observation: The output successfully returned HTTP/1.1 200 OK and displayed two 
 
 ## 📂 Project Structure
 Plaintext
+```
 data-science-research-hub/
 ├── index.html      # Main HTML structure
 ├── style.css       # Responsive UI and animations
 ├── script.js       # API fetch logic, DOM manipulation, and caching
 └── README.md       # Project documentation
+```
 
 ## ⚖️ Attribution
 Data Provider: OpenAlex API - An open and comprehensive catalog of scholarly papers, researchers, and institutions.
