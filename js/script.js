@@ -24,15 +24,22 @@ search_input.addEventListener("keypress", (event) => {
 });
 
 async function fetch_research_data(query) {
+  let filters = "concepts.id:C119857082";
+  if (open_source.checked) {
+    filters += ",is_oa:true";
+  }
+  let sort_method = sort_select.value + ":desc";
+
+  const cacheKey = `${query}|${filters}|${sort_method}`;
+  const cachedData = sessionStorage.getItem(cacheKey);
+
+  if (cachedData) {
+    getting_result(JSON.parse(cachedData));
+    return;
+  }
+
   try {
     const baseUrl = "https://api.openalex.org/works";
-    let filters = "concepts.id:C119857082";
-
-    if (open_source.checked) {
-      filters += ",is_oa:true";
-    }
-
-    let sort_method = sort_select.value + ":desc";
     const finalUrl = `${baseUrl}?search=${encodeURIComponent(query)}&filter=${filters}&sort=${sort_method}&per-page=12`;
 
     const response = await fetch(finalUrl);
@@ -52,6 +59,7 @@ async function fetch_research_data(query) {
     }
 
     const data = await response.json();
+    sessionStorage.setItem(cacheKey, JSON.stringify(data.results));
     getting_result(data.results);
   } catch (error) {
     console.error("Error:", error);
