@@ -113,14 +113,19 @@ Method: Executed curl -I http://13.222.225.87 from a local terminal.
 Observation: The output successfully returned HTTP/1.1 200 OK and displayed two distinct X-Served-By headers (e.g., X-Served-By: 7045-web-02 and X-Served-By: 7045-lb-01), proving the reverse proxy is actively distributing and tagging traffic.
 
 ## 📂 Project Structure
-Plaintext
+```
 data-science-research-hub/
 ├── index.html      # Main HTML structure
 ├── style.css       # Responsive UI styling
 ├── script.js       # API fetch logic, DOM manipulation, and caching
 └── README.md       # Project documentation
-
+```
 ## ⚖️ Attribution
 Data Provider: OpenAlex API - An open and comprehensive catalog of scholarly papers, researchers, and institutions.
+<br>
+OpenAlex API Documentation: https://developers.openalex.org/ <br>
+
+Works endpoint documentation here:
+https://docs.openalex.org/api-entities/works/search-works
 
 Author: Anas Khalid
